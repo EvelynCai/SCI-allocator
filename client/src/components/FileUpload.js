@@ -28,6 +28,7 @@ const FileUpload = () => {
       const { fileName, filePath } = res.data;
 
       setUploadedFile({ fileName, filePath });
+      console.log(uploadedFile);
 
       setMessage('File Upload Complete!');
     } catch (err) {
