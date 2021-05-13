@@ -25,4 +25,10 @@ jobs:
       ArtifactName: 'drop'
       publishLocation: 'Container'
       StoreAsTar: true
+  - task: ExtractFiles@1
+    inputs:
+      archiveFilePatterns: '**/*.tar'
+      destinationFolder: 'client/build'
+      cleanDestinationFolder: true
+      overwriteExistingFiles: false
 ...
