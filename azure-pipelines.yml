@@ -20,7 +20,9 @@ jobs:
       verbose: false
       customCommand: run build
   - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
     inputs:
-      PathtoPublish: client/build
+      PathtoPublish: 'client/build'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+      StoreAsTar: true
 ...
