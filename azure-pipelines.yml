@@ -6,7 +6,7 @@ jobs:
 - job: Job_1
   displayName: Agent job 1
   pool:
-    vmImage: vs2017-win2016
+    vmImage: macOS-latest
   steps:
   - checkout: self
   - task: Npm@1
@@ -25,10 +25,4 @@ jobs:
       ArtifactName: 'drop'
       publishLocation: 'Container'
       StoreAsTar: true
-  - task: ExtractFiles@1
-    inputs:
-      archiveFilePatterns: '**/*.tar'
-      destinationFolder: 'client/build'
-      cleanDestinationFolder: true
-      overwriteExistingFiles: false
 ...
