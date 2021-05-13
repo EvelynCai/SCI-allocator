@@ -3,7 +3,7 @@
 > This is a full stack React-Express web application that leverages Operations Research methodology to solve allocation problems in Supply Chain Integration.
 
 ## Demo on Azure
-URL: 
+URL: https://sci-allocator.azurewebsites.net/
 
 ## Quick Start on Local
 
