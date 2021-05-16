@@ -6,7 +6,7 @@ jobs:
 - job: Job_1
   displayName: Agent job 1
   pool:
-    vmImage: vs2017-win2016
+    vmImage: macOS-latest
   steps:
   - checkout: self
   - task: Npm@1
@@ -20,7 +20,9 @@ jobs:
       verbose: false
       customCommand: run build
   - task: PublishBuildArtifacts@1
-    displayName: 'Publish Artifact: drop'
     inputs:
-      PathtoPublish: client/build
+      PathtoPublish: 'client/build'
+      ArtifactName: 'drop'
+      publishLocation: 'Container'
+      StoreAsTar: true
 ...
