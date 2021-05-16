@@ -3,15 +3,14 @@ import Message from './Message';
 import axios from 'axios';
 import Table from "react-table-lite";
 import "./FileUpload.css";
-// import Exporter from 'data-exporter'; // for download
 
 const FileUpload = () => {
   const [demandFile, setDemandFile] = useState('');
   const [supplyFile, setSupplyFile] = useState('');
   const [optionalFile, setOptionalFile] = useState('');
-  const [supplyFilename, setSupplyFilename] = useState('Choose CSV File about Supply');
-  const [demandFilename, setDemandFilename] = useState('Choose CSV File about Demand');
-  const [optionalFilename, setOptionalFilename] = useState('Choose other optional CSV File');
+  const [supplyFilename, setSupplyFilename] = useState('Choose CSV File about Supply (Required)');
+  const [demandFilename, setDemandFilename] = useState('Choose CSV File about Demand (Required)');
+  const [optionalFilename, setOptionalFilename] = useState('Choose other CSV File');
   const [showSolution, setShowSolution] = useState(false);
   const [solution, setSolution] = useState([]);
   const [message, setMessage] = useState('');

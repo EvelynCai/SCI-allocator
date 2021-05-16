@@ -21,7 +21,6 @@ const SimplexSolution = require('linear-program-solver').SimplexSolution;
 const LpSolver = async (supply1, supply2, demand1, demand2, carryOvers, sourceArray1, sourceArray2) => {
     // construct the Decision Variable name, e.g. site1206customerC001
     const nameDecisionVar = (supply, demand) => {
-        console.log(`${supply.site}${demand.customer}`);
         return `site${supply.site}customer${demand.customer}`;
     };
 
@@ -30,7 +29,8 @@ const LpSolver = async (supply1, supply2, demand1, demand2, carryOvers, sourceAr
 
     // construct the non-negativity constraints based on Sourcing Rule(if any)
     const buildNonNegaConstraint = (supplySourceArray, demand) => {
-        return supplySourceArray.includes(demand.customer) ? '>=' : '==';
+        return '>=';
+        // return supplySourceArray.includes(demand.customer) ? '>=' : '==';
     };
     
     // construct the LP model that maximizes order execution for 2 CUSTOMERs * 2 SITE (per DAY per PRODUCT)

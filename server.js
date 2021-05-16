@@ -18,15 +18,12 @@ app.post('/upload', async (req, res) => {
   }
 
   try {
-    // pre-process csv
-    const parsedFiles = await CsvParser(req.files);
+    // parse CSV to JSON
+    const jsonArrays = await CsvParser(req.files);
+
+    // query JSON by DATE and PRODUCT
     
-    // compute 
-    // const params = parsedFiles.params;
-    // const dates = parsedFiles.dates;
-    // const products = parsedFiles.products;
-    // const carryOvers = parsedFiles.carryOvers;
-    
+    // find Linear Programming solutions iteratively (per DATE per PRODUCT)
     const carryOvers = {
       "demand1": 0,
       "demand2": 0,
@@ -48,9 +45,9 @@ app.post('/upload', async (req, res) => {
       quantity: '0'
     };
 
-    const solution = await LpSolver(supply1, supply2, demand1, demand2, carryOvers);
+    const solution = await LpSolver(supply1, supply2, demand1, demand2, carryOvers, [], []);
 
-    // respond
+    // send response to client
     BigInt.prototype.toJSON = function() { return this.toString(); };
     res.json(solution);
   } catch (error) {
