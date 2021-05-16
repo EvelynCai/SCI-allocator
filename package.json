@@ -4,7 +4,9 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "build": "cd client && npm install && npm run build && cd ../",
+    "build": "npm install --prefix client && npm run build --prefix client",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "server": "nodemon server.js",
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run server\" \"npm run client\""
@@ -14,7 +16,11 @@
   "license": "MIT",
   "dependencies": {
     "express": "^4.16.4",
-    "express-fileupload": "^1.1.4"
+    "express-fileupload": "^1.1.4",
+    "javascript-lp-solver": "^0.4.24",
+    "linear-program-parser": "^1.0.11",
+    "linear-program-solver": "^1.2.0",
+    "morgan": "^1.10.0"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",

@@ -1,0 +1,8 @@
+{
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/a47d0c81-7e6a-404e-9122-047fe603a0f9/resourceGroups/AzureSandboxResourceGroup/providers/Microsoft.Web/sites/SCI-allocator",
+    "appService.deploySubpath": "."
+}
