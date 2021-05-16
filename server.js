@@ -31,7 +31,6 @@ app.post('/upload', async (req, res) => {
       "supplyI": 2000,
       "supplyII": 2000,
     };
-
     const carryOvers = {
       "demand1": 0,
       "demand2": 0,
@@ -39,7 +38,7 @@ app.post('/upload', async (req, res) => {
       "supplyII": 0,
     };
 
-    //TODO: sourcing rule
+    //TODO: sourcing rule?
     const solution = await LpSolver(params, carryOvers);
 
     // respond

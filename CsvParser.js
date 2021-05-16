@@ -11,11 +11,12 @@ const CsvParser = async (files) => {
             }
         });
 
+        // validate
+
+        // parse csv to json array
         const jsonArray = await csv().fromFile(path);
         console.log(jsonArray);
     });
-
-    
 };
 
 module.exports = { CsvParser };
