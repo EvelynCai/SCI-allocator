@@ -68,7 +68,7 @@ const FileUpload = () => {
     } catch (err) {
       console.error(err);
       setMessageType('alert-danger');
-      setMessage('An error occurs, please try again later.');
+      setMessage('An error occurs, please check the uploaded files and try again.');
     }
   };
 

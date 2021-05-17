@@ -3,6 +3,7 @@ const fileUpload = require('express-fileupload');
 const logger = require('morgan');
 const { CsvParser } = require('./CsvParser');
 const { LpSolver } = require('./LpSolver');
+const { JsonFinder } = require('./JsonFinder');
 
 const app = express();
 
@@ -22,6 +23,7 @@ app.post('/upload', async (req, res) => {
     const jsonArrays = await CsvParser(req.files);
 
     // query JSON by DATE and PRODUCT
+    const { products, dates, sourceRules } = JsonFinder(jsonArrays);
     
     // find Linear Programming solutions iteratively (per DATE per PRODUCT)
     const carryOvers = {
