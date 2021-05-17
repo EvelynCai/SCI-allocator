@@ -55,7 +55,7 @@ const supplySchema = {
         schema: {
             site: String,
             product: String, 
-            date: Date, // auto convert from String to ISO Date
+            date: Date, 
             quantity: Number, // auto convert from String to Number 
         }
     }
@@ -68,7 +68,7 @@ const demandSchema = {
         schema: {
             customer: String,
             product: String, 
-            date: Date, 
+            date: Date,
             quantity: Number,
         }
     }

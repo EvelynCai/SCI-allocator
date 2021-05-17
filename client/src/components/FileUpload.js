@@ -127,7 +127,7 @@ const FileUpload = () => {
           searchable={true}
           searchBy={["x11"]} 
           download = {true}
-          fileName = {"optimal-solution.csv"}
+          fileName = {"optimal-solution"}
           noDataMessage={"NO solution at present, please upload CSV files to start optimization."}
           limit = {10}
           containerStyle = {{padding: '3rem'}}

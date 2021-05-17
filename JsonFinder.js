@@ -6,24 +6,38 @@ const JsonFinder = async (jsonArrays) => {
     const supplyJsons = jsonArrays.supplyFile;
     const optionalJsons = jsonArrays.optionalFile;
 
-    // console.log(supplyJsons)
-    const dates = nosql.set(supplyJsons)
-    .select(['date'])
-    .orderBy('date')
-    .distinct()
-    .exec();
-    // console.log(dates);
+    const getMergedSet = (selectColumn) => {
+        const supplyRows = nosql.set(supplyJsons)
+            .select([selectColumn])
+            .distinct()
+            .exec();
+        const demandRows = nosql.set(demandJsons)
+            .select([selectColumn])
+            .distinct()
+            .exec();
+    
+        const supplyList = supplyRows.map(p => p[selectColumn]);
+        const demandList = demandRows.map(p => p[selectColumn]);
+        const set = new Set(supplyList.concat(demandList));
+        const dedupList = Array.from(set);
+        return dedupList;
+    }
 
-    // const joinByProduct = nosql.set(demandJsons).join('profile',supplyJsons)
-    // .merge('product','product')
-    // .exec();
-    // console.log(data);
+    const productList = getMergedSet('product');
+    const dateList = getMergedSet('date');
 
-    // const data = nosql.set()
-    // .groupBy('brand')
-    // .orderBy('brand')
-    // .exec();
-    // console.log(data);
+    // Assumption: only 1 supply/demand of one site/customer (per DAY per PRODUCT)
+    // Assumption: only 2 sites/customers in total
+    // TODO: use GROUPBY and SUM(quantity) to merge n objects of one site/customer (per DAY per PRODUCT)
+    const queryByDateProduct = (date, product, jsons) => {
+        const selected = nosql.set(jsons)
+            .where('date', date)
+            .where('product', product)
+            .exec();
+        return selected;
+    };
+
+    return { productList, dateList, queryByDateProduct };
 };
 
 module.exports = { JsonFinder };
