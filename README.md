@@ -5,6 +5,8 @@ This is a full stack JavaScript web application that leverages Operations Resear
 - Back-end: Node.js (Express)
 - For more information about the Linear Programming model design, please refer to the comments in `./LpSolver`
 
+![UI](https://github.com/EvelynCai/SCI-allocator/blob/main/client/public/start-view.png)
+
 ## N.B.
 - Sample test CSVs could be found in `./testData`
 - Uploaded files could be found in `./client/public/uploads` with alias for purpose: "demandFile", "supplyFile", "optionalFile"(if any)
@@ -34,3 +36,16 @@ npm run dev
 
 ## Deployment on Azure 
 URL: https://sci-allocator.azurewebsites.net/ (TODO, just the default Azure node app at present)
+
+## Edge Cases
+### display solution alert and table
+![solution](https://github.com/EvelynCai/SCI-allocator/blob/main/client/public/display-solution-table-if-Ok.png)
+
+### display alerts if any error occurs
+![error-message](https://github.com/EvelynCai/SCI-allocator/blob/main/client/public/error-message.png)
+
+### search result not found
+![search-not-found](https://github.com/EvelynCai/SCI-allocator/blob/main/client/public/searched-solution-not-found.png)
+
+### download solution CSVs (w/ searched result)
+![UI](https://github.com/EvelynCai/SCI-allocator/blob/main/client/public/download-solution-of-searched-date.png)
