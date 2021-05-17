@@ -13,6 +13,7 @@ const FileUpload = () => {
   const [optionalFilename, setOptionalFilename] = useState('Choose other CSV File');
   const [showSolution, setShowSolution] = useState(false);
   const [solution, setSolution] = useState([]);
+  const [solutionHeader, setSolutionHeader] = useState([]);
   const [message, setMessage] = useState('');
   const [messageType, setMessageType] = useState('alert-info');
 
@@ -60,10 +61,11 @@ const FileUpload = () => {
         setMessageType('alert-info');
         setMessage('Scroll down to view the table of our optimal solution.');
         
-        let solution = [];
-        solution.push(res.data);
+        const array = JSON.parse(res.data);
         setShowSolution(true);
-        setSolution(solution);
+        // TODO: format the names of Decision Variables
+        setSolutionHeader(Object.keys(array[0]));
+        setSolution(array);
       }
     } catch (err) {
       console.error(err);
@@ -122,10 +124,10 @@ const FileUpload = () => {
         <Table
           id='solution-table'
           data = {solution}		
-          header = {["f_1", "f_2", "f_3", "f_4", "x11","x12","x21","x22"]} 
-          sortBy = {["x11"]}
+          header = {solutionHeader} 
+          sortBy = {["date"]}
           searchable={true}
-          searchBy={["x11"]} 
+          searchBy={["date", "product"]} 
           download = {true}
           fileName = {"optimal-solution"}
           noDataMessage={"NO solution at present, please upload CSV files to start optimization."}
@@ -133,7 +135,7 @@ const FileUpload = () => {
           containerStyle = {{padding: '3rem'}}
           headerStyle = {{backgroundColor: '#282c34', color: 'white', borderColor: '#282c34'}}
         />
-      } 
+      }  
     </Fragment>
   );
 };

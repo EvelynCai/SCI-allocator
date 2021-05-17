@@ -23,8 +23,13 @@ const JsonFinder = async (jsonArrays) => {
         return dedupList;
     }
 
-    const productList = getMergedSet('product');
-    const dateList = getMergedSet('date');
+    const getDedupList= (selectColumn, jsons) => {
+        const deDupList = nosql.set(jsons)
+            .select([selectColumn])
+            .distinct()
+            .exec();
+        return deDupList.map(obj => obj[selectColumn]);
+    }
 
     // Assumption: only 1 supply/demand of one site/customer (per DAY per PRODUCT)
     // Assumption: only 2 sites/customers in total
@@ -37,7 +42,7 @@ const JsonFinder = async (jsonArrays) => {
         return selected;
     };
 
-    return { productList, dateList, queryByDateProduct };
+    return { getMergedSet, getDedupList, queryByDateProduct };
 };
 
 module.exports = { JsonFinder };

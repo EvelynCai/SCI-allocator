@@ -27,7 +27,7 @@ const LpSolver = async (supply1, supply2, demand1, demand2, carryOvers, sourceAr
     // construct the Objective Function, in this case maximize the order execution
     const buildObjectiveFunc = () => `max(${nameDecisionVar(supply1, demand1)} + ${nameDecisionVar(supply1, demand2)} + ${nameDecisionVar(supply2, demand1)} + ${nameDecisionVar(supply2, demand2)})`;
 
-    // construct the non-negativity constraints based on Sourcing Rule(if any)
+    // TODO construct the non-negativity constraints based on Sourcing Rule(if any)
     const buildNonNegaConstraint = (supplySourceArray, demand) => {
         return '>=';
         // return supplySourceArray.includes(demand.customer) ? '>=' : '==';
