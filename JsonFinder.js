@@ -42,7 +42,15 @@ const JsonFinder = async (jsonArrays) => {
         return selected;
     };
 
-    return { getMergedSet, getDedupList, queryByDateProduct };
+    const queryCustomerByProductAndSite = (site, product, jsons) => {
+        const sourcableCustomers = nosql.set(jsons)
+            .where('site', site)
+            .where('product', product)
+            .select(['customer'])
+            .exec();
+        return sourcableCustomers.map(c => c['customer']);
+    }
+    return { getMergedSet, getDedupList, queryByDateProduct, queryCustomerByProductAndSite };
 };
 
 module.exports = { JsonFinder };

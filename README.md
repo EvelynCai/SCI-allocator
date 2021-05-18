@@ -1,7 +1,7 @@
 # Supply Chain Integration Allocator
 
 This is a full stack JavaScript web application that leverages Operations Research methodology to solve allocation problems in Supply Chain Integration.
-- Front-end: React
+- Front-end: React, Bootstrap
 - Back-end: Node.js (Express)
 - For more information about the Linear Programming model design, please refer to the comments in `./LpSolver`
 

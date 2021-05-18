@@ -9,7 +9,7 @@ const SimplexSolution = require('linear-program-solver').SimplexSolution;
  * 
  * TODO: extend the LP model from (2 SITE * 2 CUSTOMER) to (m SITE * n CUSTOMER)
  * 
- * @param {*} supply1 the object that denotes
+ * @param {*} supply1 
  * @param {*} supply2 
  * @param {*} demand1 
  * @param {*} demand2 
@@ -27,10 +27,10 @@ const LpSolver = async (supply1, supply2, demand1, demand2, carryOvers, sourceAr
     // construct the Objective Function, in this case maximize the order execution
     const buildObjectiveFunc = () => `max(${nameDecisionVar(supply1, demand1)} + ${nameDecisionVar(supply1, demand2)} + ${nameDecisionVar(supply2, demand1)} + ${nameDecisionVar(supply2, demand2)})`;
 
-    // TODO construct the non-negativity constraints based on Sourcing Rule(if any)
+    // construct the non-negativity constraints based on Sourcing Rule(if any) 
+    // TODO format the variable name with suffix "-n" and "-p"
     const buildNonNegaConstraint = (supplySourceArray, demand) => {
-        return '>=';
-        // return supplySourceArray.includes(demand.customer) ? '>=' : '==';
+        return supplySourceArray.includes(demand.customer) ? '>=' : '==';
     };
     
     // construct the LP model that maximizes order execution for 2 CUSTOMERs * 2 SITE (per DAY per PRODUCT)

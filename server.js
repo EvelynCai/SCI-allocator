@@ -24,6 +24,7 @@ app.post('/upload', async (req, res) => {
     const jsonArrays = await CsvParser(req.files);
     let demandJsons = jsonArrays.demandFile;
     let supplyJsons = jsonArrays.supplyFile;
+    let optionalJsons = jsonArrays.optionalFile;
     let solutionArrays = [];
 
      // format DATE to be ISO date
@@ -35,7 +36,7 @@ app.post('/upload', async (req, res) => {
     }
 
     // query JSON by DATE and PRODUCT
-    const { getMergedSet, getDedupList, queryByDateProduct } = await JsonFinder(jsonArrays);
+    const { getMergedSet, getDedupList, queryByDateProduct, queryCustomerByProductAndSite } = await JsonFinder(jsonArrays);
     const productList = getMergedSet('product');
     const dateList = getMergedSet('date');
     const siteList = getDedupList('site', supplyJsons);
@@ -82,8 +83,12 @@ app.post('/upload', async (req, res) => {
           let result = {};
           result.date = date;
           result.product = product;
-          // TODO: get sourcing rules lists from JsonFinder.js
-          const solution = await LpSolver(supplies[0], supplies[1], demands[0], demands[1], carryOvers, [], []);
+
+          const sourceList1 = queryCustomerByProductAndSite(supplies[0].site, product, optionalJsons);
+          const sourceList2 = queryCustomerByProductAndSite(supplies[1].site, product, optionalJsons);
+          
+          // TODO: extend the model by replace one object(supply/demand/sourceList) with a list of objects
+          const solution = await LpSolver(supplies[0], supplies[1], demands[0], demands[1], carryOvers, sourceList1, sourceList2);
           for (const [key, value] of Object.entries(solution)) {
             // TODO: replace with more reliable regex match
             if (!key.includes("f_")) {
