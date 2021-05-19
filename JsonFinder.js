@@ -43,6 +43,10 @@ const JsonFinder = async (jsonArrays) => {
     };
 
     const queryCustomerByProductAndSite = (site, product, jsons) => {
+        if (!jsons) {
+            return [];
+        }
+        
         const sourcableCustomers = nosql.set(jsons)
             .where('site', site)
             .where('product', product)

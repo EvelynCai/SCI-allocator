@@ -1,0 +1,66 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0",
+        "title": "Supply Chain Integration - Allocator API",
+        "description": ""
+    },
+    "customOption": {},
+    "security": {},
+    "basePath": "/",
+    "tags": [
+        {
+            "name": "Files",
+            "description": "APIs to manipulate the files"
+        }
+    ],
+    "consumes": [
+        "application/json",
+        "multipart/form-data"
+    ],
+    "produces": [
+        "application/json",
+        "application/xml"
+    ],
+    "paths": {
+        "/upload": {
+            "post": {
+                "tags": [
+                    "Files"
+                ],
+                "description": "Upload csv files to plan allocation.",
+                "consummes": [
+                    "multipart/form-data"
+                ],
+                "parameters": [
+                    {
+                        "name": "supplyFile",
+                        "in": "formData",
+                        "type": "file",
+                        "required": true
+                    },
+                    {
+                        "name": "demandFile",
+                        "in": "formData",
+                        "type": "file",
+                        "required": true
+                    },
+                    {
+                        "name": "optionalFile",
+                        "in": "formData",
+                        "type": "file",
+                        "required": false
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "File upload successfully"
+                    },
+                    "500": {
+                        "description": "Internal Server Error"
+                    }
+                }
+            }
+        }
+    }
+}

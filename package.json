@@ -23,7 +23,8 @@
     "isvalid": "^2.7.21",
     "linear-program-parser": "^1.0.11",
     "linear-program-solver": "^1.2.0",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "swagger-ui-express": "^4.1.6"
   },
   "devDependencies": {
     "concurrently": "^4.1.0",

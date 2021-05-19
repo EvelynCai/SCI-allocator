@@ -33,6 +33,8 @@ npm install
 
 # Serve on localhost:3000
 npm run dev
+
+# Swagger API doc on localhost:5000/api-docs/
 ```
 
 ## Deployment on Azure 

@@ -5,6 +5,7 @@ const { CsvParser } = require('./CsvParser');
 const { LpSolver } = require('./LpSolver');
 const { JsonFinder } = require('./JsonFinder');
 const dateFormat = require("dateformat");
+const swaggerUi = require('swagger-ui-express');
 
 const app = express();
 
@@ -13,6 +14,10 @@ app.use(logger('dev'));
 
 // uploading middleware
 app.use(fileUpload());
+
+// document middleware
+const swaggerDocument = require('./doc/swagger.json');
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.post('/upload', async (req, res) => {
   if (req.files === null) {
@@ -64,8 +69,8 @@ app.post('/upload', async (req, res) => {
           currentList.push(dummyObj);
         }
       }
-      console.log(currentList);
-      console.log(overallList);
+      // console.log(currentList);
+      // console.log(overallList);
     };
 
     // TODO: update carryOvers based on previous dates
