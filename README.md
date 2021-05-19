@@ -3,6 +3,7 @@
 This is a full stack JavaScript web application that leverages Operations Research methodology to solve allocation problems in Supply Chain Integration.
 - Front-end: React, Bootstrap
 - Back-end: Node.js (Express)
+- Presentation deck: https://docs.google.com/presentation/d/1GFnLU2GyEhcOzwwg5-IKT3JFEeV4sHRLgla9Hd3AvwM/edit?usp=sharing
 - For more information about the Linear Programming model design, please refer to the comments in `./LpSolver`
 
 ![UI](https://github.com/EvelynCai/SCI-allocator/blob/main/client/public/start-view.png)
